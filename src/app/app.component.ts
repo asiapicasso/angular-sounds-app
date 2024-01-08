@@ -16,7 +16,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'My vibrations', url: '/my-vibrations', icon: 'headset' },
-    { title: 'My followed plants', url: '/my-followed-plants', icon: 'leaf' },
+    { title: 'The Plants', url: '/the-plants', icon: 'leaf' },
     { title: 'My profile', url: '/my-profile', icon: 'settings' },
     { title: 'Connection', url: '/auth', icon: 'person' },
   ];
