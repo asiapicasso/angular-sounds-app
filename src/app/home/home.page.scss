@@ -1,0 +1,28 @@
+.title {
+    /* Styles pour le titre (ajustez selon vos besoins) */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.map {
+    width: 480px;
+    height: 300px;
+    margin: 0 auto;
+    /* Centre la carte horizontalement dans le conteneur */
+    /*     flex: 1;
+ */
+    /* Fait en sorte que la carte utilise tout l'espace disponible */
+}
+
+.full-screen {
+    width: 100%;
+    height: 100vh;
+    /* 100% de la hauteur de la vue */
+}
+
+.full-screen-button {
+    position: absolute;
+    top: 100px;
+    left: 450px;
+    z-index: 10;
+}
