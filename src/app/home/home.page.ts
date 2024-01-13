@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { latLng, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
+
 
 
 
@@ -23,6 +25,8 @@ export class HomePage implements OnInit {
   mapOptions: MapOptions;
   click: any;
 
+  items: string[] = []; //Explicitly declare the type
+
   constructor() {
     this.mapOptions = {
       layers: [
@@ -37,7 +41,23 @@ export class HomePage implements OnInit {
   }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit() { }
+  ngOnInit() {
+    this.generateItems();
+  }
+
+  private generateItems() {
+    const count = this.items.length + 1;
+    for (let i = 0; i < 50; i++) {
+      this.items.push(`Item ${count + i}`);
+    }
+  }
+
+  onIonInfinite(ev: InfiniteScrollCustomEvent) {
+    this.generateItems();
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
+  }
 
   toggleFullScreen() {
     this.isFullScreen = !this.isFullScreen;
