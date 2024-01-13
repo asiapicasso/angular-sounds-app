@@ -5,6 +5,7 @@ import { IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonN
 import { addIcons } from 'ionicons';
 import { homeOutline, homeSharp, headsetOutline, headsetSharp, leafOutline, leafSharp, personOutline, personSharp, settingsOutline, settingsSharp } from 'ionicons/icons';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -23,5 +24,7 @@ export class AppComponent {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {
     addIcons({ homeOutline, headsetOutline, leafOutline, settingsOutline, settingsSharp, personOutline, personSharp, leafSharp, headsetSharp, homeSharp });
+
   }
+
 }

@@ -6,6 +6,7 @@ import { latLng, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { AudioService } from '../audio.service';
 
 
 
@@ -27,7 +28,8 @@ export class HomePage implements OnInit {
 
   items: string[] = []; //Explicitly declare the type
 
-  constructor(private alertController: AlertController) {
+
+  constructor(private alertController: AlertController, private audioService: AudioService) {
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -75,6 +77,15 @@ export class HomePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  /* service audio */
+  toggleAudio() {
+    if (this.audioService.isPlaying) {
+      this.audioService.pauseAudio();
+    } else {
+      this.audioService.playAudio('your-audio-file.mp3');
+    }
   }
 
 }

@@ -20,10 +20,10 @@
     Home page works
   </div> -->
 
-  <h3>Map 🧭</h3>
-
-  <ion-button class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
-
+  <div>
+    <h3>Map 🧭</h3>
+    <ion-button slot="end" class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
+  </div>
   <div class="map" [ngClass]="{'full-screen': isFullScreen}" leaflet [leafletOptions]="mapOptions"></div>
 
   <h3>Infinity list 📁</h3>
@@ -35,12 +35,19 @@
           <img [src]="'https://picsum.photos/80/80?random=' + index" alt="avatar" />
         </ion-avatar> -->
         <ion-label>{{ item }}</ion-label>
-        <ion-button slot="end" (click)="openPopup(item)">Open Popup</ion-button>
+        <ion-button slot="end" (click)="openPopup(item)">View Infos</ion-button>
+        <ion-button slot="end" (click)="toggleAudio()">Listen 🎧</ion-button><!-- bouton d'ecoute de l'audio -->
       </ion-item>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
+
+
+  <<!-- audio controls *ngIf="audioService.isPlaying">
+    <source src="your-audio-file.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+    </audio> -->
 
 </ion-content>

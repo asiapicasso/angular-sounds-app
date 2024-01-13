@@ -117,3 +117,11 @@ ion-note {
 ion-item.selected {
   --color: var(#18534F);
 }
+
+ion-footer {
+  ion-toolbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
