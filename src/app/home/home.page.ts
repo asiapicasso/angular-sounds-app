@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { latLng, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
-
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
 
   items: string[] = []; //Explicitly declare the type
 
-  constructor() {
+  constructor(private alertController: AlertController) {
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -45,6 +45,7 @@ export class HomePage implements OnInit {
     this.generateItems();
   }
 
+  /* infinity scroll */
   private generateItems() {
     const count = this.items.length + 1;
     for (let i = 0; i < 50; i++) {
@@ -59,8 +60,21 @@ export class HomePage implements OnInit {
     }, 500);
   }
 
+  /* full screen button */
   toggleFullScreen() {
     this.isFullScreen = !this.isFullScreen;
+  }
+
+  /* listen item popup */
+  async openPopup(item: string) {
+    const alert = await this.alertController.create({
+      header: item,
+      subHeader: `Popup Subheader`, //Added by: ${item.user.username}
+      message: 'This is a custom popup message.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
