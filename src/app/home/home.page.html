@@ -21,21 +21,19 @@
   </div> -->
 
   <div>
-    <h3>Map 🧭</h3>
+    <h3>🧭 Map</h3>
     <ion-button slot="end" class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
   </div>
   <div class="map" [ngClass]="{'full-screen': isFullScreen}" leaflet [leafletOptions]="mapOptions"></div>
 
-  <h3>Infinity list 📁</h3>
+  <h3>📁 Infinity list</h3>
 
   <div>
     <ion-list>
-      <ion-item *ngFor="let item of items; let index">
-        <!-- <ion-avatar slot="start">
-          <img [src]="'https://picsum.photos/80/80?random=' + index" alt="avatar" />
-        </ion-avatar> -->
-        <ion-label>{{ item }}</ion-label>
-        <ion-button slot="end" (click)="openPopup(item)">View Infos</ion-button>
+      <ion-item *ngFor="let vibration of vibraitons; let index">
+        <ion-label>{{ vibration }}</ion-label>
+        <app-vibration-details [vibration]="vibration">View Infos</app-vibration-details>
+        <!-- <ion-button slot="end" (click)="openPopup(item)">View Infos</ion-button>  -->
         <ion-button slot="end" (click)="toggleAudio()">Listen 🎧</ion-button><!-- bouton d'ecoute de l'audio -->
       </ion-item>
     </ion-list>

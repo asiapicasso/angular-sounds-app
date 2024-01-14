@@ -7,7 +7,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { AudioService } from '../audio.service';
-
+import { VibrationDetailsComponent } from "../component/vibration-details/vibration-details.component";
 
 
 @Component({
@@ -15,7 +15,7 @@ import { AudioService } from '../audio.service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, LeafletModule],
+  imports: [IonicModule, CommonModule, FormsModule, LeafletModule, VibrationDetailsComponent]
 })
 
 
@@ -26,8 +26,7 @@ export class HomePage implements OnInit {
   mapOptions: MapOptions;
   click: any;
 
-  items: string[] = []; //Explicitly declare the type
-
+  vibraitons: string[] = []; //Explicitly declare the type
 
   constructor(private alertController: AlertController, private audioService: AudioService) {
     this.mapOptions = {
@@ -44,19 +43,19 @@ export class HomePage implements OnInit {
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
-    this.generateItems();
+    this.generateVibraitons();
   }
 
   /* infinity scroll */
-  private generateItems() {
-    const count = this.items.length + 1;
+  private generateVibraitons() {
+    const count = this.vibraitons.length + 1;
     for (let i = 0; i < 50; i++) {
-      this.items.push(`Item ${count + i}`);
+      this.vibraitons.push(`Vibration ${count + i}`);
     }
   }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
-    this.generateItems();
+    this.generateVibraitons();
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
@@ -65,18 +64,6 @@ export class HomePage implements OnInit {
   /* full screen button */
   toggleFullScreen() {
     this.isFullScreen = !this.isFullScreen;
-  }
-
-  /* listen item popup */
-  async openPopup(item: string) {
-    const alert = await this.alertController.create({
-      header: item,
-      subHeader: `Popup Subheader`, //Added by: ${item.user.username}
-      message: 'This is a custom popup message.',
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   /* service audio */
