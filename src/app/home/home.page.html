@@ -33,11 +33,11 @@
 
   <div>
     <ion-list>
-      <ion-item *ngFor="let vibration of vibraitons; let index">
+      <ion-item *ngFor="let vibration of vibrations; let index">
         <ion-label>{{ vibration }}</ion-label>
         <app-vibration-details [vibration]="vibration">View Infos</app-vibration-details>
         <!-- <ion-button slot="end" (click)="openPopup(item)">View Infos</ion-button>  -->
-        <ion-button slot="end" (click)="toggleAudio()">Listen 🎧</ion-button><!-- bouton d'ecoute de l'audio -->
+        <ion-button slot="end" (click)="toggleAudio()">Listen 🎧</ion-button> <!-- bouton d'ecoute de l'audio -->
       </ion-item>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
@@ -46,7 +46,7 @@
   </div>
 
 
-  <<!-- audio controls *ngIf="audioService.isPlaying">
+  <!-- audio controls *ngIf="audioService.isPlaying">
     <source src="your-audio-file.mp3" type="audio/mp3">
     Your browser does not support the audio element.
     </audio> -->

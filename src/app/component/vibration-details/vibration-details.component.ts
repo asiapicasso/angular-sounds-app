@@ -1,15 +1,28 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule } from '@ionic/angular';
+import { IonInfiniteScrollCustomEvent } from '@ionic/core';
 
 @Component({
   selector: 'app-vibration-details',
   templateUrl: './vibration-details.component.html',
   styleUrls: ['./vibration-details.component.scss'],
   standalone: true,
-  imports: [IonicModule],
+  imports: [IonicModule, CommonModule, FormsModule],
 })
 export class VibrationDetailsComponent {
+
+  /* onIonInfinite($event: IonInfiniteScrollCustomEvent<void>) {
+//     throw new Error('Method not implemented.');
+  } */
+  toggleAudio() {
+/*     throw new Error('Method not implemented.');
+ */  }
+
   @Input() vibration: string = 'vibration';
+
+  vibrations: string[] = []; //Explicitly declare the type
 
   constructor(private alertController: AlertController) { }
 
@@ -54,13 +67,14 @@ export class VibrationDetailsComponent {
   }
 
   /* Implement your edit methods */ /* a mettre a jour avec le back */
-  editVibration(vibration: string) {
+  public editVibration(vibration: string) {
     // Logic for editing the vibration
     console.log('Editing vibration:', vibration);
+    console.log('prout prout');
   }
 
   /* Implement your delete methods */ /* a mettre a jour avec le back */
-  deleteVibration(vibration: string) {
+  public deleteVibration(vibration: string) {
     // Logic for deleting the vibration
     console.log('Deleting vibration:', vibration);
   }

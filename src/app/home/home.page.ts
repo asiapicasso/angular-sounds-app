@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, InfiniteScrollCustomEvent } from '@ionic/angular';
 import { latLng, MapOptions, tileLayer } from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
-import { AlertController } from '@ionic/angular';
 import { AudioService } from '../audio.service';
 import { VibrationDetailsComponent } from "../component/vibration-details/vibration-details.component";
 
@@ -15,7 +13,8 @@ import { VibrationDetailsComponent } from "../component/vibration-details/vibrat
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, LeafletModule, VibrationDetailsComponent]
+  imports: [IonicModule, CommonModule, FormsModule, LeafletModule, VibrationDetailsComponent],
+  //providers: [VibrationDetailsComponent],
 })
 
 
@@ -26,7 +25,11 @@ export class HomePage implements OnInit {
   mapOptions: MapOptions;
   click: any;
 
-  vibraitons: string[] = []; //Explicitly declare the type
+  /*  @ViewChild(VibrationDetailsComponent)
+   vibrationDetailsComponent!: VibrationDetailsComponent;
+  */
+
+  vibrations: string[] = []; //Explicitly declare the type
 
   constructor(private alertController: AlertController, private audioService: AudioService) {
     this.mapOptions = {
@@ -43,22 +46,32 @@ export class HomePage implements OnInit {
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
-    this.generateVibraitons();
+    this.generateVibrations();
   }
 
+
   /* infinity scroll */
-  private generateVibraitons() {
-    const count = this.vibraitons.length + 1;
+  /* 1.generate vibrations */
+  /* 2.use infinityscroll event */
+  /* public generateVibrations() {
+    const count = this.vibrations.length + 1;
     for (let i = 0; i < 50; i++) {
-      this.vibraitons.push(`Vibration ${count + i}`);
+      this.vibrations.push(`Vibration ${count + i}`);
+    }
+  } */
+
+  private generateVibrations() {
+    const count = this.vibrations.length + 1;
+    for (let i = 0; i < 50; i++) {
+      this.vibrations.push(`Vibration ${count + i}`);
     }
   }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
-    this.generateVibraitons();
+    this.generateVibrations();
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
-    }, 500);
+    }, 200);
   }
 
   /* full screen button */
