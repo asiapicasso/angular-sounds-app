@@ -21,7 +21,7 @@ import { VibrationDetailsComponent } from "../component/vibration-details/vibrat
 
 export class HomePage implements OnInit {
 
-  isFullScreen = false;
+  isFullScreenMap = false;
 
   mapOptions: MapOptions;
   click: any;
@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
 
   /* full screen button */
   toggleFullScreen() {
-    this.isFullScreen = !this.isFullScreen;
+    this.isFullScreenMap = !this.isFullScreenMap;
   }
 
   /* service audio */

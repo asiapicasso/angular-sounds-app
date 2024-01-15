@@ -20,11 +20,14 @@
     Home page works
   </div> -->
 
-  <div>
-    <h3>🧭 Map</h3>
-    <ion-button slot="end" class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
+  <div [class.full-screen-map]="isFullScreenMap">
+    <!-- [ngClass]="{'full-screen': isFullScreen}" pour plusieurs classes -->
+    <header>
+      <h3>🧭 Map</h3>
+      <ion-button slot="end" class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
+    </header>
+    <div class="map" leaflet [leafletOptions]="mapOptions"></div>
   </div>
-  <div class="map" [ngClass]="{'full-screen': isFullScreen}" leaflet [leafletOptions]="mapOptions"></div>
 
   <h3>📁 Infinity list</h3>
 
