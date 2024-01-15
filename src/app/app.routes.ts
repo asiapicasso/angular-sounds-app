@@ -31,7 +31,7 @@ export const routes: Routes = [
       {
         path: 'the-plants',
         loadComponent: () => import('./the-plants/the-plants.page').then(m => m.ThePlantsPage)
-      },
+      }
     ]
   },
 

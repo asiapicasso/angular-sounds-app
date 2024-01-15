@@ -26,7 +26,7 @@
       <h3>🧭 Map</h3>
       <ion-button slot="end" class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
     </header>
-    <div class="map" leaflet [leafletOptions]="mapOptions"></div>
+    <div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
   </div>
 
   <h3>📁 Infinity list</h3>

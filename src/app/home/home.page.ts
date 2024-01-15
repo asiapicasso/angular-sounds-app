@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule, InfiniteScrollCustomEvent } from '@ionic/angular';
-import { latLng, MapOptions, tileLayer } from 'leaflet';
+import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AudioService } from '../audio.service';
 import { VibrationDetailsComponent } from "../component/vibration-details/vibration-details.component";
@@ -72,6 +72,11 @@ export class HomePage implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 200);
+  }
+
+  /* fixed crocked map */
+  onMapReady(map: Map) {
+    setTimeout(() => map.invalidateSize(), 0);
   }
 
   /* full screen button */
