@@ -15,7 +15,26 @@
   </ion-header>
 
   <div class="ion-padding">
-    My vibrations page works
+    <ion-list>
+      <ion-item *ngFor="let vibration of vibrations"><ion-card>
+          <ion-card-header>
+            <!-- &lbrace;  &rbrace; -->
+            <ion-card-title>{{ vibration }} $&lbrace; vibration.name &rbrace;</ion-card-title>
+            <ion-card-subtitle>$&lbrace; vibration.plant_id.name &rbrace;</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            &lbrace; player &rbrace; 🎧
+          </ion-card-content>
+
+          <ion-button fill="clear" color="danger" (click)="callEditVibration(vibration)">Edit</ion-button>
+          <ion-button fill="solid" color="danger" (click)="callDeleteVibration(vibration)">Delete</ion-button>
+          <!-- double verif (add popup "are you sure ?") -->
+
+        </ion-card></ion-item>
+    </ion-list>
+
+
   </div>
 
 </ion-content>
