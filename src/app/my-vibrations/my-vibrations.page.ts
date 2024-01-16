@@ -14,11 +14,12 @@ import { VibrationDetailsComponent } from '../component/vibration-details/vibrat
 })
 export class MyVibrationsPage implements OnInit {
 
+  vibrations: string[] = [];
+
+
   constructor(private vibrationDetailsComponent: VibrationDetailsComponent) { }
 
   //use method from the component
-
-  vibrations: string[] = [];
 
   ngOnInit() {
     this.generateVibrations();
