@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-the-plants',
@@ -15,11 +16,17 @@ export class ThePlantsPage implements OnInit {
 
   plants: string[] = [];
 
+  isAdmin: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.generatePlants();
+    this.checkAdminStatus();
+  }
+
+  navigateToPlantsVibrationsPage() {
+    this.router.navigate(['/the-plants-vibrations']);
   }
 
   generatePlants() {
@@ -29,8 +36,16 @@ export class ThePlantsPage implements OnInit {
     }
   }
 
-  navigateToPlantsVibrationsPage() {
-    this.router.navigate(['/the-plants-vibrations']);
+  checkAdminStatus() {
+    this.isAdmin = this.userService.isUserAdmin(); // Utilisez votre logique pour déterminer le statut admin
+  }
+
+  editPlant() {
+    // Logique pour éditer la plante
+  }
+
+  deletePlant() {
+    // Logique pour supprimer la plante
   }
 
 }

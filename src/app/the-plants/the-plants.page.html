@@ -31,12 +31,14 @@
 
           <!--fonction on button (click)="callEditVibration(vibration)" -->
 
-          <ion-button fill="solid" color="success">Add a related vibration</ion-button>
-          <br>
+          <ion-button fill="solid" color="success">Add a related vibration</ion-button> <br>
           <ion-button fill="outline" color="success" (click)="navigateToPlantsVibrationsPage()">View the related
-            vibrations</ion-button>
+            vibrations</ion-button> <br>
 
           <!-- if ADMIN add bouton modifier et supprimer la plante -->
+          <ion-button *ngIf="isAdmin" fill="solid" color="primary" (click)="editPlant()">Edit Plant</ion-button>
+          <ion-button *ngIf="isAdmin" fill="solid" color="danger" (click)="deletePlant()">Delete Plant</ion-button>
+
 
         </ion-card></ion-item>
     </ion-list>
