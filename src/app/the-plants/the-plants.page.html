@@ -17,7 +17,7 @@
 
   <!-- le contenu de ma page -->
   <div class="ion-padding">
-    <ion-list>
+    <ion-list> <!-- filter la liste en ordre alphabetique ? -->
       <ion-item *ngFor="let plant of plants"><ion-card>
           <ion-card-header>
             <!-- &lbrace;  &rbrace; -->
@@ -38,7 +38,6 @@
           <!-- if ADMIN add bouton modifier et supprimer la plante -->
           <ion-button *ngIf="isAdmin" fill="solid" color="primary" (click)="editPlant()">Edit Plant</ion-button>
           <ion-button *ngIf="isAdmin" fill="solid" color="danger" (click)="deletePlant()">Delete Plant</ion-button>
-
 
         </ion-card></ion-item>
     </ion-list>
