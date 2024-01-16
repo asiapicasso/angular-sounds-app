@@ -31,7 +31,11 @@ export const routes: Routes = [
       {
         path: 'the-plants',
         loadComponent: () => import('./the-plants/the-plants.page').then(m => m.ThePlantsPage)
-      }
+      },
+      {
+        path: 'the-plants-vibrations',
+        loadComponent: () => import('./the-plants-vibrations/the-plants-vibrations.page').then(m => m.ThePlantsVibrationsPage)
+      },
     ]
   },
 
@@ -39,4 +43,5 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./security/login/login.page').then(m => m.LoginPage)
   },
+
 ];
