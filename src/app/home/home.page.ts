@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule, InfiniteScrollCustomEvent } from '@ionic/angular';
 import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { AudioService } from '../audio.service';
+import { AudioService } from '../service/audio.service';
 import { VibrationDetailsComponent } from "../component/vibration-details/vibration-details.component";
 
 
