@@ -1,0 +1,29 @@
+ion-card {
+    width: 100%;
+    --padding-start: 0;
+    --padding-end: 0;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+ion-list {
+    margin: 0;
+    padding: 0;
+}
+
+ion-item {
+    --border-style: none;
+}
+
+ion-card-content {
+    padding: 10px;
+}
+
+ion-button {
+    margin-top: 15px;
+}
+
+ion-button+ion-button {
+    margin-left: 15px;
+}

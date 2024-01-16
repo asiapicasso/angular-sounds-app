@@ -17,7 +17,29 @@
 
   <!-- le contenu de ma page -->
   <div class="ion-padding">
-    Plants page works
+    <ion-list>
+      <ion-item *ngFor="let plant of plants"><ion-card>
+          <ion-card-header>
+            <!-- &lbrace;  &rbrace; -->
+            <ion-card-title>{{ plant }} $&lbrace; plant.name &rbrace;</ion-card-title>
+            <ion-card-subtitle>$&lbrace; vibration.plant_id.name &rbrace;</ion-card-subtitle>
+          </ion-card-header>
+
+          <!-- <ion-card-content>
+            &lbrace; player &rbrace; 🎧
+          </ion-card-content> -->
+
+          <!--fonction on button (click)="callEditVibration(vibration)" -->
+
+          <ion-button fill="solid" color="success">Add a related vibration</ion-button>
+          <br>
+          <ion-button fill="outline" color="success" (click)="navigateToPlantsVibrationsPage()">View the related
+            vibrations</ion-button>
+
+        </ion-card></ion-item>
+    </ion-list>
+
+
   </div>
 
 </ion-content>
