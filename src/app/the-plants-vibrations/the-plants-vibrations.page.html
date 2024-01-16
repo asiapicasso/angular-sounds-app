@@ -11,9 +11,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="ion-padding">
-    <ion-button (click)="goBack()">Back to the greenhouse</ion-button>
-    <p>prout</p>
+  <div class="ion-padding"> <!-- (click)="goBack()" -->
+    <ion-button fill="outline" color="medium" (click)="goBack()"> <ion-back-button defaultHref="/the-plants">
+      </ion-back-button> Back to the greenhouse 🍃 </ion-button>
+    <!-- afficher toutes les vibrations d'une seule plante -->
   </div>
 
 </ion-content>
