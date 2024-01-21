@@ -31,6 +31,11 @@
 
   <h3>📁 Infinity list</h3>
 
+  <div class="ion-align-items-end">
+    <ion-select [(ngModel)]="selectedPlantName" placeholder="Filter by Plant Name"></ion-select>
+    <ion-button (click)="filterVibrations()" fill="outline" color="medium">Apply Filter</ion-button>
+  </div>
+
   <div>
     <ion-list>
       <ion-item *ngFor="let vibration of vibrations; let index">

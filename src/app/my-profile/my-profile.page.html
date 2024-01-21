@@ -40,6 +40,8 @@
           them</ion-button>
       </ion-card-header>
       <ion-card-content>
+        <ion-button fill="outline" color="medium" (click)="toggleSort()">A -> Z</ion-button>
+
         <!-- Display user information here -->
         <ion-list>
           <ion-item class="wout-line-under" *ngFor="let vibration of vibrations"><ion-card>

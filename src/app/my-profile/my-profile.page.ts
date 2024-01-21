@@ -17,6 +17,9 @@ export class MyProfilePage implements OnInit {
   user: any;
   vibrations: string[] = [];
 
+  isSortedAlphabetically = false;
+
+
   constructor(private userService: UserService, private navCtrl: NavController, private router: Router) { }
 
   ngOnInit() {
@@ -43,6 +46,12 @@ export class MyProfilePage implements OnInit {
     for (let i = 0; i < 5; i++) {
       this.vibrations.push(`My Vibration ${count + i}`);
     }
+  }
+
+  //sort button a to z
+  toggleSort() {
+    this.isSortedAlphabetically = !this.isSortedAlphabetically;
+    console.log("prout sort");
   }
 
 }
