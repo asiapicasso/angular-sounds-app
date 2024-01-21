@@ -23,6 +23,7 @@ export class MyProfilePage implements OnInit {
 
   ngOnInit() {
     this.user = {
+      //TODO utiliser le authService pour applique le model pour recup le user.info dynamiquement
       firstname: 'John',
       lastname: 'Doe',
       email: 'john.doe@example.com',
@@ -31,8 +32,8 @@ export class MyProfilePage implements OnInit {
   }
 
   editProfile() {
-    // Redirect to the profile update page
     //TODO
+    //envoyer les champs modifié en requete update
     this.navCtrl.navigateForward('/profile/update'); //route d'exemple
   }
 
