@@ -1,6 +1,6 @@
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgModule } from '@angular/core';
-import { AudioService } from './audio.service';
+import { AudioService } from './service/audio.service';
 
 
 @NgModule({

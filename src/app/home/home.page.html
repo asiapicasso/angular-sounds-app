@@ -19,6 +19,7 @@
   <!-- <div class="ion-padding">
     Home page works
   </div> -->
+
   <header>
     <h3>🧭 Map</h3>
     <ion-button slot="end" class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
@@ -32,7 +33,9 @@
   <h3>📁 Infinity list</h3>
 
   <div class="ion-align-items-end">
-    <ion-select [(ngModel)]="selectedPlantName" placeholder="Filter by Plant Name"></ion-select>
+    <ion-select [(ngModel)]="selectedPlantName" placeholder="Filter by Plant Name">
+      <ion-select-option *ngFor="let plant of plants" [value]="plant">{{ plant }}</ion-select-option>
+    </ion-select>
     <ion-button (click)="filterVibrations()" fill="outline" color="medium">Apply Filter</ion-button>
   </div>
 

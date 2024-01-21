@@ -30,7 +30,7 @@ export class PlantService {
   generatePlants(): string[] {
     const count = this.plants.length + 1;
     const generatedPlants: string[] = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 15; i++) {
       generatedPlants.push(`Plant ${count + i}`);
     }
     return generatedPlants;

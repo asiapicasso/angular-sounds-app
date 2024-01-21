@@ -38,6 +38,8 @@ export class HomePage implements OnInit {
   sortedVibrations = []; // Copie du tableau de vibrations pour le tri
   sortingEnabled = false;
 
+  plants: string[] = []; // Variable pour stocker les plantes
+
   constructor(private alertController: AlertController, private audioService: AudioService, public plantService: PlantService) {
     this.mapOptions = {
       layers: [
@@ -55,6 +57,8 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.generateVibrations();
     this.vibrations = [...this.vibrations];
+    //this.plantService.generatePlants();
+    this.plants = this.plantService.generatePlants();
   }
 
 
@@ -79,7 +83,7 @@ export class HomePage implements OnInit {
   filterVibrations() {
     if (this.selectedPlantName) {
       // Filtrer les vibrations en fonction de la plante sélectionnée
-      //this.filteredVibrations = this.vibrations.filter(vibration => vibration.plants_id.name === this.selectedPlantName);
+      //this.filteredVibrations = this.vibrations.filter(vibration => plants === this.selectedPlantName);
     } else {
       // Si aucun filtre n'est sélectionné, affichez toutes les vibrations
       this.filteredVibrations = [...this.vibrations];
