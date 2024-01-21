@@ -9,7 +9,6 @@ export class PlantService {
 
   constructor() { }
 
-
   getPlants(): string[] {
     return this.plants;
   }
@@ -26,7 +25,7 @@ export class PlantService {
     // Logique pour supprimer la plante
   }
 
-
+  /* TODO ne pas generer des plants mais récupérer celle de la DB */
   generatePlants(): string[] {
     const count = this.plants.length + 1;
     const generatedPlants: string[] = [];

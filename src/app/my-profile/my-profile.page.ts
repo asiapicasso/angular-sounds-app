@@ -19,7 +19,6 @@ export class MyProfilePage implements OnInit {
 
   isSortedAlphabetically = false;
 
-
   constructor(private userService: UserService, private navCtrl: NavController, private router: Router) { }
 
   ngOnInit() {
@@ -28,12 +27,12 @@ export class MyProfilePage implements OnInit {
       lastname: 'Doe',
       email: 'john.doe@example.com',
     };
-    this.generateVibrations();
-
+    this.generateVibrations(); //TODO remplacer avec les vibrations que l'on a en DB
   }
 
   editProfile() {
     // Redirect to the profile update page
+    //TODO
     this.navCtrl.navigateForward('/profile/update'); //route d'exemple
   }
 

@@ -23,7 +23,7 @@ export class ThePlantsPage implements OnInit {
   constructor(private router: Router, private userService: UserService, public plantService: PlantService) { }
 
   ngOnInit() {
-    this.plants = this.plantService.generatePlants();
+    this.plants = this.plantService.generatePlants(); //TODO recuperer les plantes
     this.checkAdminStatus();
   }
 
@@ -32,7 +32,8 @@ export class ThePlantsPage implements OnInit {
   }
 
   checkAdminStatus() {
-    this.isAdmin = this.userService.isUserAdmin(); // Utilisez votre logique pour déterminer le statut admin
+    //TODO récuperer le role du user
+    this.isAdmin = this.userService.isUserAdmin(); 
   }
 
   toggleSort() {
