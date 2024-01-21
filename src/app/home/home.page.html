@@ -24,9 +24,9 @@
     <h3>🧭 Map</h3>
     <ion-button slot="end" class="full-screen-button" (click)="toggleFullScreen()"> ⛶ </ion-button>
   </header>
+
   <div [class.full-screen-map]="isFullScreenMap">
     <!-- [ngClass]="{'full-screen': isFullScreen}" pour plusieurs classes -->
-
     <div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
   </div>
 

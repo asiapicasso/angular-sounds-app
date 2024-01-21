@@ -88,6 +88,8 @@ export class HomePage implements OnInit {
   /* full screen button */
   toggleFullScreen() {
     this.isFullScreenMap = !this.isFullScreenMap;
+    //this.onMapReady;
+    // TODO faire que la map se regenere apres que la map soit mise en fullScreen
   }
 
   applyFilter() {
