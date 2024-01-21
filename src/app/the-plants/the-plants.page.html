@@ -18,7 +18,10 @@
   <!-- le contenu de ma page -->
   <div class="ion-padding">
 
-    <ion-button fill="outline" color="medium" (click)="toggleSort()">A -> Z</ion-button>
+    <div class="ion-text-center">
+      <ion-button fill="outline" color="medium" (click)="toggleSort()">A -> Z</ion-button>
+      <ion-button fill="outline" color="medium" (click)="moreFame()">Plus populaire</ion-button>
+    </div>
 
     <ion-list> <!-- filter la liste en ordre alphabetique ? -->
       <ion-item *ngFor="let plant of plants"><ion-card>
