@@ -33,12 +33,17 @@ export class ThePlantsPage implements OnInit {
 
   checkAdminStatus() {
     //TODO récuperer le role du user
-    this.isAdmin = this.userService.isUserAdmin(); 
+    this.isAdmin = this.userService.isUserAdmin();
   }
 
   toggleSort() {
     this.isSortedAlphabetically = !this.isSortedAlphabetically;
     console.log("prout sort");
+  }
+
+  moreFame() {
+    //TODO trier par le nombre de vibration ayant cette plante en plant_id
+    console.log("prout populaire");
   }
 
 }
