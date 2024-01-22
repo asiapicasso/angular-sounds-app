@@ -1,0 +1,23 @@
+<!-- login.component.html -->
+<div class="ion-padding">
+  <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+    <!-- Email input -->
+    <ion-input label="Email" labelPlacement="floating" inputmode="text" #email="ngModel" required="true" name="email"
+      [(ngModel)]="authRequest.email"></ion-input>
+    <!-- Error message displayed if the email is invalid -->
+    <ion-text color="danger" *ngIf="email.invalid && email.touched">Email is required.</ion-text>
+
+    <!-- Password input -->
+    <ion-input label="Password" labelPlacement="floating" inputmode="text" #password="ngModel" required="true"
+      type="password" name="password" [(ngModel)]="authRequest.password"></ion-input>
+
+    <!-- Error message displayed if the password is invalid -->
+    <ion-text color="danger" *ngIf="password.invalid && password.touched">Password is required.</ion-text>
+
+    <!-- Submit button -->
+    <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">Log in</ion-button>
+
+    <!-- Error message displayed if the login failed -->
+    <ion-text color="danger" *ngIf="loginError">Email or password is invalid.</ion-text>
+  </form>
+</div>

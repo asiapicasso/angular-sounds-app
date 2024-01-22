@@ -1,0 +1,34 @@
+<!-- login.component.html -->
+<div class="ion-padding">
+  <form #signupForm="ngForm" (submit)="onSubmit(signupForm)">
+    <!-- firstname input -->
+    <ion-input label="Firstname" labelPlacement="floating" inputmode="text" #firstname="ngModel" required="true"
+      name="firstname" [(ngModel)]="authRequest.email"></ion-input>
+    <!-- Error message displayed if the email is invalid -->
+    <ion-text color="danger" *ngIf="firstname.invalid && firstname.touched">Firstname is required.</ion-text>
+    <!-- lastname input -->
+    <ion-input label="Lastname" labelPlacement="floating" inputmode="text" #lastname="ngModel" required="true"
+      name="lastname" [(ngModel)]="authRequest.email"></ion-input>
+    <!-- Error message displayed if the email is invalid -->
+    <ion-text color="danger" *ngIf="lastname.invalid && lastname.touched">Lastname is required.</ion-text>
+
+    <!-- Email input -->
+    <ion-input label="Email" labelPlacement="floating" inputmode="email" #email="ngModel" required="true" name="email"
+      [(ngModel)]="authRequest.email"></ion-input>
+    <!-- Error message displayed if the email is invalid -->
+    <ion-text color="danger" *ngIf="email.invalid && email.touched">Email is required.</ion-text>
+
+    <!-- Password input -->
+    <ion-input label="Password" labelPlacement="floating" inputmode="text" #password="ngModel" required="true"
+      type="password" name="password" [(ngModel)]="authRequest.password"></ion-input>
+
+    <!-- Error message displayed if the password is invalid -->
+    <ion-text color="danger" *ngIf="password.invalid && password.touched">Password is required.</ion-text>
+
+    <!-- Submit button -->
+    <ion-button type="submit" expand="block" [disabled]="signupForm.invalid">Log in</ion-button>
+
+    <!-- Error message displayed if the login failed -->
+    <ion-text color="danger" *ngIf="loginError">Email or password is invalid.</ion-text>
+  </form>
+</div>
