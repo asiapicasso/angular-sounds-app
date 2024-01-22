@@ -14,9 +14,12 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <!-- <ion-button (click)="logOut()">
+            <ion-icon [icon]="logOutIcon"></ion-icon>Log Out
+          </ion-button> -->
         </ion-list>
 
-
+        <ion-button color="warning" (click)="logOut()">👤 Log Out</ion-button>
 
       </ion-content>
     </ion-menu>
