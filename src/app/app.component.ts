@@ -6,14 +6,14 @@ import { addIcons } from 'ionicons';
 import { homeOutline, homeSharp, headsetOutline, headsetSharp, leafOutline, leafSharp, personOutline, personSharp, settingsOutline, settingsSharp } from 'ionicons/icons';
 import { AuthService } from './security/auth.service';
 import { IonicModule } from '@ionic/angular';
-
+import { PlayerComponent } from './component/player/player.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
+  imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule, PlayerComponent],
 })
 export class AppComponent {
   public appPages = [

@@ -14,9 +14,7 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <!-- <ion-button (click)="logOut()">
-            <ion-icon [icon]="logOutIcon"></ion-icon>Log Out
-          </ion-button> -->
+
         </ion-list>
 
         <ion-button color="warning" (click)="logOut()">👤 Log Out</ion-button>
@@ -25,9 +23,17 @@
     </ion-menu>
 
     <!-- Ajoutez une div autour, dans laquelle tu mets le router outlet et le composant du lecteur -->
-    <ion-router-outlet id="main-content">
-      <!-- le contenu de ma page -->
-    </ion-router-outlet>
+    <ion-content id="main-content">
+
+      <ion-router-outlet>
+        <!-- le contenu de ma page -->
+      </ion-router-outlet>
+
+      <app-player>
+        <!-- le composant du lecteur -->
+      </app-player>
+
+    </ion-content>
 
   </ion-split-pane>
 
