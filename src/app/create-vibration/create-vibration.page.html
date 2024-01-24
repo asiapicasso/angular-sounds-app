@@ -1,0 +1,48 @@
+<!-- template page -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add a Vibration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Add a Vibration</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+
+    <form (ngSubmit)="addVibration()">
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input [(ngModel)]="vibration.name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Latitude: </ion-label>
+        <ion-input [(ngModel)]="vibration.location.lat" name="lat" type="number" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Longitude: </ion-label>
+        <ion-input [(ngModel)]="vibration.location.long" name="long" type="number" required></ion-input>
+      </ion-item>
+
+      <!-- Assuming you have a list of plant options -->
+      <ion-item>
+        <ion-label>Select Plant</ion-label>
+        <ion-select [(ngModel)]="selectedPlantName" name="plantId" required>
+          <ion-select-option *ngFor="let plant of plants" [value]="plant">{{ plant }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button type="submit" expand="full">Add Vibration</ion-button>
+    </form>
+
+  </div>
+</ion-content>

@@ -36,6 +36,10 @@ export const routes: Routes = [
         path: 'the-plants-vibrations',
         loadComponent: () => import('./the-plants-vibrations/the-plants-vibrations.page').then(m => m.ThePlantsVibrationsPage)
       },
+      {
+        path: 'create-vibration',
+        loadComponent: () => import('./create-vibration/create-vibration.page').then(m => m.CreateVibrationPage)
+      },
     ]
   },
 
@@ -44,12 +48,9 @@ export const routes: Routes = [
     loadComponent: () => import('./auth/login/login.page').then(m => m.LoginPage)
   },
   {
-    path: 'logout',
-    loadComponent: () => import('./auth/logout/logout.page').then(m => m.LogoutPage)
-  },
-  {
     path: 'signup',
     loadComponent: () => import('./auth/signup/signup.page').then(m => m.SignupPage)
   },
+
 
 ];

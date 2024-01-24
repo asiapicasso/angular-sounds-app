@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiCallService } from '../api-call.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +10,7 @@ export class PlantService {
 
   plants: [] = [];
 
-  constructor() { }
+  constructor(private http: HttpClient, private apiCall: ApiCallService) { }
 
   getPlants(): string[] {
     return this.plants;
