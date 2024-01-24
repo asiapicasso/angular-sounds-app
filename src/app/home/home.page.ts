@@ -7,7 +7,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AudioService } from '../service/audio.service';
 import { VibrationDetailsComponent } from "../component/vibration-details/vibration-details.component";
 import { PlantService } from '../service/plant.service';
-import { mapMarkerIcon } from '../map-marker/map-marker.component';
+import { mapMarkerIcon } from '../component/map-marker/map-marker.component';
 
 @Component({
   selector: 'app-home',
