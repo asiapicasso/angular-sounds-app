@@ -2,11 +2,12 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule, InfiniteScrollCustomEvent } from '@ionic/angular';
-import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
+import { latLng, MapOptions, tileLayer, Map, marker, Marker, } from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AudioService } from '../service/audio.service';
 import { VibrationDetailsComponent } from "../component/vibration-details/vibration-details.component";
 import { PlantService } from '../service/plant.service';
+import { mapMarkerIcon } from '../map-marker/map-marker.component';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,8 @@ export class HomePage implements OnInit {
 
   plants: string[] = []; // Variable pour stocker les plantes
 
+  mapMarkers: Marker[] = [];
+
   constructor(private alertController: AlertController, private audioService: AudioService, public plantService: PlantService) {
     this.mapOptions = {
       layers: [
@@ -43,6 +46,14 @@ export class HomePage implements OnInit {
       zoom: 13,
       center: latLng(46.778186, 6.641524)
     };
+
+    /* 
+      //marker demo
+    this.mapMarkers = [
+      marker([46.778186, 6.641524], { icon: mapMarkerIcon }),
+      marker([46.780796, 6.647395], { icon: mapMarkerIcon }),
+      marker([46.784992, 6.652267], { icon: mapMarkerIcon })
+    ]; */
   }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
@@ -51,12 +62,23 @@ export class HomePage implements OnInit {
     this.vibrations = [...this.vibrations];
     //this.plantService.generatePlants();
     this.plants = this.plantService.generatePlants();
+    this.generateMarker();
   }
 
   private generateVibrations() {
     const count = this.vibrations.length + 1;
     for (let i = 0; i < 50; i++) {
       this.vibrations.push(`Vibration ${count + i}`);
+    }
+  }
+
+  private generateMarker() {
+    const count = this.mapMarkers.length + 1;
+    for (let i = 0; i < 50; i++) {
+      const randomLat = 46.778186 + (Math.random() - 0.5) * 0.1;
+      const randomLng = 6.641524 + (Math.random() - 0.5) * 0.2;
+      const randomMarker = marker([randomLat, randomLng], { icon: mapMarkerIcon });
+      this.mapMarkers.push(randomMarker);
     }
   }
 

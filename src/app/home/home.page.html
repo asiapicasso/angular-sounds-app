@@ -27,7 +27,8 @@
 
   <div [class.full-screen-map]="isFullScreenMap">
     <!-- [ngClass]="{'full-screen': isFullScreen}" pour plusieurs classes -->
-    <div class="map" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
+    <div class="map" leaflet [leafletOptions]="mapOptions" [leafletLayers]="mapMarkers"
+      (leafletMapReady)="onMapReady($event)"></div>
   </div>
 
   <h3>📁 Infinity list</h3>
