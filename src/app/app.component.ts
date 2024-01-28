@@ -32,10 +32,10 @@ export class AppComponent {
 
   logOut() {
     //TODO deconnection
-    //this.authService.logout().subscribe(() => {
+    this.authService.logOut().subscribe(() => {
 
-    // this.router.navigate(['/login']);
-    //});
+/*      this.router.navigate(['/login']);
+ */    });
     console.log("logging out");
   }
 

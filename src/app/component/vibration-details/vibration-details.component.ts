@@ -3,6 +3,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { IonInfiniteScrollCustomEvent } from '@ionic/core';
+import { Plant } from 'src/app/models/plants';
+import { User } from 'src/app/models/users';
+import { Vibration } from 'src/app/models/vibrations';
+import { ApiCallService } from 'src/app/service/api-call.service';
 
 @Component({
   selector: 'app-vibration-details',
@@ -20,62 +24,51 @@ export class VibrationDetailsComponent {
 /*     throw new Error('Method not implemented.');
  */  }
 
-  @Input() vibration: string = 'vibration';
+  @Input() vibration!: Vibration;
 
   vibrations: string[] = []; //Explicitly declare the type
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private apiCallService: ApiCallService) { }
 
   /* listen vibration popup */
-  async openPopup(vibration: string) {
+  async openPopup(vibration: Vibration) {
     //const isOwner = vibration.owner === 'currentLoggedInUser'; //check if the current user is the owner of the item
+    let allLinkedPlant: Map<string, Plant> = new Map();
+
+
+    let owner = await this.apiCallService.getAUser(vibration.ownerId)!.toPromise();
+
+    for (const p of vibration.plantsIds) {
+      if (!allLinkedPlant.has(p)) {
+        let plant = await this.apiCallService.getPlant(p).toPromise();
+        allLinkedPlant.set(p, plant!);
+      }
+    }
+
+
+
+
+    let message = 'Plantes liées à cette vibration :\n';
+    allLinkedPlant.forEach((plant, plantId) => {
+      message += `${plant.name},\n`; // Vous pouvez personnaliser le format du message ici
+    });
+
 
     const alert = await this.alertController.create({
-      header: vibration, //nom de la vibration ${vibration.name}
-      subHeader: `Popup Subheader`, //${vibration.plant_id.name} nom de la famille de plante
-      message: 'This is a custom popup message.', //Created by: ${vibration.user.username} nom de l'utilisateur
+      header: vibration.name,
+      subHeader: owner!.user.firstname,
+      message: message, // Utilisez le message construit
       backdropDismiss: true,
       buttons: [{
-        text: 'OK', handler: () => {
+        text: 'OK',
+        handler: () => {
           console.debug('OK clicked');
         }
-      },
-      // Add Update button if the user is the owner
-      /* {
-        text: 'Modifier',
-        handler: () => {
-          if (isOwner) {
-            this.editVibration(vibration);
-          }
-        },
-        visible: isOwner // Show the button only if the user is the owner
-      }, */
-      // Add Delete button if the user is the owner
-      /* {
-        text: 'Supprimer',
-        handler: () => {
-          if (isOwner) {
-            this.deleteVibration(vibration);
-          }
-        },
-        visible: isOwner // Show the button only if the user is the owner
-      } */],
-
+      }],
     });
 
     await alert.present();
   }
 
-  /* Implement your edit methods */ /* a mettre a jour avec le back */
-  public editVibration(vibration: string) {
-    // Logic for editing the vibration
-    console.log('Editing vibration:', vibration);
-    console.log('prout prout');
-  }
 
-  /* Implement your delete methods */ /* a mettre a jour avec le back */
-  public deleteVibration(vibration: string) {
-    // Logic for deleting the vibration
-    console.log('Deleting vibration:', vibration);
-  }
 }

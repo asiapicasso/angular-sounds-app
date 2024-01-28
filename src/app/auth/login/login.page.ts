@@ -34,10 +34,16 @@ export class LoginPage {
     this.authRequest = {};
   }
 
+  redirectToSignup() {
+    this.router.navigate(['/signup']); // Assurez-vous d'ajuster la route en fonction de votre configuration
+  }
+
   /**
    * Called when the login form is submitted.
    */
   onSubmit(form: NgForm) {
+    console.log(form);
+
     // Do not do anything if the form is invalid.
     if (form.invalid) {
       return;

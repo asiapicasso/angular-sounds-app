@@ -54,7 +54,7 @@ export class SignupPage {
     // NOTE: Since our form is valid, it means that "this.authRequest" is actually
     // a perfectly valid "AuthRequest" object, and that's what we are telling TypeScript
     // here with "as AuthRequest".
-    this.auth.logIn$(this.authRequest as AuthRequest).subscribe({
+    this.auth.signUp$(this.authRequest as AuthRequest).subscribe({
       next: () => this.router.navigateByUrl("/"),
       error: (err) => {
         this.loginError = true;
@@ -62,6 +62,11 @@ export class SignupPage {
       },
     });
   }
+
+  redirectToLogin() {
+    this.router.navigate(['/login']); // Assurez-vous d'ajuster la route en fonction de votre configuration
+  }
+
 
 }
 

@@ -15,20 +15,31 @@
   </ion-header>
 
   <div class="ion-padding">
-    <ion-list>
+
+    <ion-list class="ion-text-center"> <ion-button expand="block" fill="solid" color="success"
+        (click)="navigateToCreateVibrationsPage()"> Create a vibration
+      </ion-button>
+
+
       <ion-item *ngFor="let vibration of vibrations"><ion-card>
           <ion-card-header>
             <!-- &lbrace;  &rbrace; -->
-            <ion-card-title>{{ vibration }} $&lbrace; vibration.name &rbrace;</ion-card-title>
-            <ion-card-subtitle>$&lbrace; vibration.plant_id.name &rbrace;</ion-card-subtitle>
-          </ion-card-header>
+            <ion-card-title> {{ vibration.name }}</ion-card-title>
+            <ion-card-subtitle>
+              <!-- Utilisez une boucle ngFor pour afficher les noms de toutes les plantes de cette vibration -->
+              <ng-container *ngFor="let plantId of vibration.plantsIds; let last = last">
+                {{ allLinkedPlant.get(plantId)?.name }}
+                <!-- Ajoutez une virgule si ce n'est pas le dernier élément du tableau -->
+                <ng-container *ngIf="!last">, </ng-container>
+              </ng-container>
+            </ion-card-subtitle> </ion-card-header>
 
-          <ion-card-content>
-            <!-- TODO add player -->
-            &lbrace; player &rbrace; 🎧
-          </ion-card-content>
+          <audio *ngIf="audioUrls.get(vibration._id)" controls>
+            <source [src]="audioUrls.get(vibration._id)" type="audio/mpeg">
+            Votre navigateur ne prend pas en charge l'élément audio.
+          </audio> <br>
 
-          <ion-button fill="clear" color="danger" (click)="callEditVibration(vibration)">Edit</ion-button>
+          <ion-button fill="clear" color="danger" (click)="openEditMyVibration(vibration)">Edit</ion-button>
           <ion-button fill="solid" color="danger" (click)="callDeleteVibration(vibration)">Delete</ion-button>
           <!-- TODO double verif (add popup "are you sure ?") -->
 

@@ -1,0 +1,41 @@
+<!-- edit-vibration-popup.component.html -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Edit Vibration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <form (ngSubmit)="updateVibration()">
+
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input [(ngModel)]="vibrationToUpdate.name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Latitude:</ion-label>
+        <ion-input [(ngModel)]="vibrationToUpdate.location.lat" name="lat" type="number" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Longitude:</ion-label>
+        <ion-input [(ngModel)]="vibrationToUpdate.location.long" name="long" type="number" required></ion-input>
+      </ion-item>
+
+      <!-- Assuming you have a list of plant options -->
+      <!--    <ion-item>
+        <ion-label>Select Plants</ion-label>
+        <ion-select [(ngModel)]="selectedPlantIds" name="plantIds" multiple="true">
+          <ion-select-option *ngFor="let plant of plants" [value]="plant._id">{{ plant.name }}</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+
+      <!-- Add the file input field for MP3 file if needed -->
+      <!-- ... -->
+
+      <ion-button type="submit" expand="full">Save Changes</ion-button>
+    </form>
+  </div>
+</ion-content>

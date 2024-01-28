@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Modifier le nom de la plante</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closePopup()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nouveau nom de la plante</ion-label>
+    <ion-input [(ngModel)]="newPlantName" type="text"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="savePlantName()">Enregistrer</ion-button>
+</ion-content>

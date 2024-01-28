@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { VibrationService } from '../service/vibration.service';
+import { ActivatedRoute } from '@angular/router';
+import { from } from 'rxjs';
+import { Vibration } from '../models/vibrations';
+import { Plant } from '../models/plants';
 import { PlantService } from '../service/plant.service';
 //import { Geolocation } from '@ionic-native/geolocation/ngx';
 
@@ -16,21 +19,35 @@ import { PlantService } from '../service/plant.service';
 export class CreateVibrationPage implements OnInit {
 
   selectedPlantName: string = '';
-  plants: string[] = [];
+  plants: Plant[] = [];
+  private plantIdFromParams: string = '';
+  selectedPlantIds: string[] = [];
+  selectedFile: File | undefined;
 
-  vibration = {
+  vibration: Vibration = {
+    _id: '',
     name: '',
     location: {
       lat: null as unknown as number,
       long: null as unknown as number,
     },
-    plantId: '',
+    plantsIds: [],
+    ownerId: '', vibrationPath: ""
   };
 
-  constructor(private vibrationService: VibrationService, public plantService: PlantService) { }
+  constructor(public plantService: PlantService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.plants = this.plantService.generatePlants(); //TODO recuperer les plantes
+    this.route.params.subscribe((params) => {
+      this.plantIdFromParams = params['id'];
+    });
+
+
+    this.plantService.getPlants().subscribe((response) => {
+      this.plants = response.plants;
+    }, (error) => {
+      console.error('Error fetching plants', error);
+    });
 
     // Get current location using standard Geolocation API
     navigator.geolocation.getCurrentPosition(
@@ -44,16 +61,40 @@ export class CreateVibrationPage implements OnInit {
       }
     );
   }
+  onFileSelected(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files[0]) {
 
-  async addVibration() {
+      this.selectedFile = <File>inputElement.files[0];
+
+    }
+  }
+
+
+  async addVibration(name: string, location: { lat: number; long: number }) {
     try {
-      // Call your function with field data
-      this.addVibrationWithLocation();
+      // Mettez à jour les propriétés de l'objet Vibration avec les valeurs passées
+      this.vibration.name = name;
+      this.vibration.location = location;
+      this.vibration.plantsIds = this.selectedPlantIds;
+
+      console.log(JSON.stringify(this.vibration));
+      const formData = new FormData();
+      formData.append('vibration', JSON.stringify(this.vibration));
+      formData.append('audio', this.selectedFile as Blob, this.selectedFile!.name as string);
+      // Appelez votre service pour ajouter la vibration en utilisant this.vibration
+      await from(this.plantService.addVibration(formData)).toPromise();
+
+      // Réinitialisez les valeurs après avoir ajouté la vibration
+
+
       console.log("addVibration");
     } catch (error) {
       console.error('Error adding vibration', error);
     }
   }
+
+
 
   async addVibrationWithLocation() {
     // Envoyez les données au service pour ajouter la vibration

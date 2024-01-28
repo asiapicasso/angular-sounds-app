@@ -19,17 +19,20 @@
   <div class="ion-padding">
 
     <div class="ion-text-center">
-      <ion-button fill="outline" color="medium" (click)="toggleSort()">A -> Z</ion-button>
-      <ion-button fill="outline" color="medium" (click)="moreFame()">Plus populaire</ion-button>
+      <!-- <ion-button fill="outline" color="medium" (click)="toggleSort()">A -> Z</ion-button>
+      <ion-button fill="outline" color="medium" (click)="moreNew()">Plus Récente</ion-button> -->
+      <ion-button expand="block" fill="solid" color="success" (click)="navigateToCreatePlantsPage()">Add a
+        Plant</ion-button>
+
     </div>
 
     <ion-list> <!-- filter la liste en ordre alphabetique ? -->
       <ion-item *ngFor="let plant of plants"><ion-card>
           <ion-card-header>
             <!-- &lbrace;  &rbrace; -->
-            <ion-card-title>{{ plant }} $&lbrace; plant.name &rbrace;</ion-card-title>
-            <ion-card-subtitle>$&lbrace; vibration.plant_id.name &rbrace;</ion-card-subtitle>
-          </ion-card-header>
+            <ion-card-title>{{ plant.name }} </ion-card-title>
+            <!--             <ion-card-subtitle>$&lbrace; vibration.plant_id.name &rbrace;</ion-card-subtitle>
+ --> </ion-card-header>
 
           <!-- <ion-card-content>
             &lbrace; player &rbrace; 🎧
@@ -37,15 +40,18 @@
 
           <!--fonction on button (click)="callEditVibration(vibration)" -->
 
-          <ion-button fill="solid" color="success">Add a related vibration</ion-button> <br>
+          <!-- <ion-button fill="solid" color="success" (click)="navigateToCreateVibrationPage(plant)">Add a related
+            vibration</ion-button>
+
           <ion-button fill="outline" color="success" (click)="navigateToPlantsVibrationsPage()">View the related
-            vibrations</ion-button> <br>
+            vibrations</ion-button> <br> -->
 
           <!-- if ADMIN add bouton modifier et supprimer la plante -->
-          <ion-button *ngIf="isAdmin" fill="solid" color="primary" (click)="plantService.editPlant()">Edit
+          <ion-button *ngIf="isAdmin" fill="solid" color="primary" (click)="openEditPlantNamePopup(plant)">Edit
             Plant</ion-button>
-          <ion-button *ngIf="isAdmin" fill="solid" color="danger" (click)="plantService.deletePlant()">Delete
+          <ion-button *ngIf="isAdmin" fill="solid" color="danger" (click)="deletePlant(plant._id)">Delete
             Plant</ion-button>
+
 
         </ion-card></ion-item>
     </ion-list>

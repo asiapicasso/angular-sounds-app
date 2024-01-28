@@ -5,8 +5,8 @@ import { onlyAuthenticated } from "./security/only-authenticated.guard";
 export const routes: Routes = [
   {
     path: '',
-/*     canActivateChild: [onlyAuthenticated], //going to check for every child route | turn on secu and login 
- */    children: [
+    canActivateChild: [onlyAuthenticated], //going to check for every child route | turn on secu and login 
+    children: [
       {
         path: '',
         redirectTo: 'home',
@@ -36,10 +36,20 @@ export const routes: Routes = [
         path: 'the-plants-vibrations',
         loadComponent: () => import('./the-plants-vibrations/the-plants-vibrations.page').then(m => m.ThePlantsVibrationsPage)
       },
+      /*       {
+              path: 'create-vibration',
+              loadComponent: () => import('./create-vibration/create-vibration.page').then(m => m.CreateVibrationPage)
+            }, */
       {
         path: 'create-vibration',
         loadComponent: () => import('./create-vibration/create-vibration.page').then(m => m.CreateVibrationPage)
       },
+      {
+        path: 'create-plant',
+        loadComponent: () => import('./create-plant/create-plant.page').then(m => m.CreatePlantPage)
+      },
+
+
     ]
   },
 
@@ -51,6 +61,7 @@ export const routes: Routes = [
     path: 'signup',
     loadComponent: () => import('./auth/signup/signup.page').then(m => m.SignupPage)
   },
+
 
 
 ];

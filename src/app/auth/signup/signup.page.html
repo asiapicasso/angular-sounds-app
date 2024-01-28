@@ -3,12 +3,12 @@
   <form #signupForm="ngForm" (submit)="onSubmit(signupForm)">
     <!-- firstname input -->
     <ion-input label="Firstname" labelPlacement="floating" inputmode="text" #firstname="ngModel" required="true"
-      name="firstname" [(ngModel)]="authRequest.email"></ion-input>
+      name="firstname" [(ngModel)]="authRequest.firstname"></ion-input>
     <!-- Error message displayed if the email is invalid -->
     <ion-text color="danger" *ngIf="firstname.invalid && firstname.touched">Firstname is required.</ion-text>
     <!-- lastname input -->
     <ion-input label="Lastname" labelPlacement="floating" inputmode="text" #lastname="ngModel" required="true"
-      name="lastname" [(ngModel)]="authRequest.email"></ion-input>
+      name="lastname" [(ngModel)]="authRequest.lastname"></ion-input>
     <!-- Error message displayed if the email is invalid -->
     <ion-text color="danger" *ngIf="lastname.invalid && lastname.touched">Lastname is required.</ion-text>
 
@@ -31,4 +31,7 @@
     <!-- Error message displayed if the login failed -->
     <ion-text color="danger" *ngIf="loginError">Email or password is invalid.</ion-text>
   </form>
+
+  <ion-button expand="block" (click)="redirectToLogin()">J'ai déjà un compte</ion-button>
+
 </div>

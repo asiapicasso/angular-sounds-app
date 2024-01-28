@@ -2,20 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiCallService } from '../service/api-call.service';
+import { VibrationResponse } from '../models/vibrations';
+import { Plant, PlantResponse } from '../models/plants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlantService {
 
-  plants: [] = [];
+  plants: Plant[] = [];
 
   constructor(private http: HttpClient, private apiCall: ApiCallService) { }
 
-  getPlants(): string[] {
-    return this.plants;
-  }
-
+  /*   getPlants(): string[] {
+      return this.plants;
+    }
+   */
   addPlant(plant: string) {
     //addedPlant.push(plant);
   }
@@ -24,19 +26,38 @@ export class PlantService {
     // Logique pour éditer la plante
   }
 
-  deletePlant() {
-    // Logique pour supprimer la plante
+  // Supprime une plante par ID
+  deletePlant(id: string): Observable<PlantResponse> {
+    return this.apiCall.deletePlant(id);
   }
 
-  /* TODO ne pas generer des plants mais récupérer celle de la DB */
-  generatePlants(): string[] {
-    const count = this.plants.length + 1;
-    const generatedPlants: string[] = [];
-    for (let i = 0; i < 15; i++) {
-      generatedPlants.push(`Plant ${count + i}`);
-    }
-    return generatedPlants;
+  getPlants(): Observable<PlantResponse> {
+    return this.apiCall.getAllPlant();
   }
 
+
+  updatePlant(id: string, newName: string): Observable<PlantResponse> {
+    return this.apiCall.updatePlant(id, newName);
+  }
+
+
+  addVibration(vibrationData: FormData): Observable<any> {
+
+    console.log(vibrationData);
+
+    return this.apiCall.addVibration(vibrationData);
+  }
+
+
+  getMyVibrations(): Observable<VibrationResponse> {
+    return this.apiCall.getMyVibrations();
+  }
 
 }
+
+
+
+
+
+
+

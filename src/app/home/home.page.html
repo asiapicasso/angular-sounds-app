@@ -33,21 +33,26 @@
 
   <h3>📁 Infinity list</h3>
 
-  <div class="ion-align-items-end">
+  <!--   <div class="ion-align-items-end">
     <ion-select [(ngModel)]="selectedPlantName" placeholder="Filter by Plant Name">
-      <ion-select-option *ngFor="let plant of plants" [value]="plant">{{ plant }}</ion-select-option>
+      <ion-select-option *ngFor="let plant of plants" [value]="plant">{{ plant.name }}</ion-select-option>
     </ion-select>
     <ion-button (click)="filterVibrations()" fill="outline" color="medium">Apply Filter</ion-button>
   </div>
-
+ -->
   <div>
     <ion-list>
       <ion-item *ngFor="let vibration of vibrations; let index">
-        <ion-label>{{ vibration }}</ion-label>
+        <ion-label>{{ vibration.name }}</ion-label>
+
         <app-vibration-details [vibration]="vibration">View Infos</app-vibration-details>
         <!-- <ion-button slot="end" (click)="openPopup(item)">View Infos</ion-button>  -->
-        <ion-button slot="end" (click)="toggleAudio()">Listen 🎧</ion-button> <!-- bouton d'ecoute de l'audio -->
-      </ion-item>
+        <!--         <ion-button slot="end" (click)="toggleAudio()">Listen 🎧</ion-button>  bouton d'ecoute de l'audio -->
+        <audio *ngIf="audioUrls.get(vibration._id)" controls>
+          <source [src]="audioUrls.get(vibration._id)" type="audio/mpeg">
+          Votre navigateur ne prend pas en charge l'élément audio.
+        </audio></ion-item>
+
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>

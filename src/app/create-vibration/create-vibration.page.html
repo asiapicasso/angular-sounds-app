@@ -1,4 +1,3 @@
-<!-- template page -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -17,7 +16,8 @@
 
   <div class="ion-padding">
 
-    <form (ngSubmit)="addVibration()">
+    <form (ngSubmit)="addVibration(vibration.name, vibration.location)" enctype="multipart/form-data">
+
       <ion-item>
         <ion-label>Name</ion-label>
         <ion-input [(ngModel)]="vibration.name" name="name" required></ion-input>
@@ -35,10 +35,16 @@
 
       <!-- Assuming you have a list of plant options -->
       <ion-item>
-        <ion-label>Select Plant</ion-label>
-        <ion-select [(ngModel)]="selectedPlantName" name="plantId" required>
-          <ion-select-option *ngFor="let plant of plants" [value]="plant">{{ plant }}</ion-select-option>
+        <ion-label>Select Plants</ion-label>
+        <ion-select [(ngModel)]="selectedPlantIds" name="plantIds" multiple="true">
+          <ion-select-option *ngFor="let plant of plants" [value]="plant._id">{{ plant.name }}</ion-select-option>
         </ion-select>
+      </ion-item>
+
+      <!-- Add the file input field for MP3 file -->
+      <ion-item>
+        <ion-label>Upload MP3 File</ion-label>
+        <input type="file" (change)="onFileSelected($event)" accept=".mp3">
       </ion-item>
 
       <ion-button type="submit" expand="full">Add Vibration</ion-button>
