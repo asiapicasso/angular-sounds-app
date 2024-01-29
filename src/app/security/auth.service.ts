@@ -28,7 +28,8 @@ export class AuthService {
     this.#auth$.next(undefined);
   }
 
-  /**
+
+  /** 
    * @returns An `Observable` that will emit a `boolean` value
    * indicating whether the current user is authenticated.
    * This `Observable` will never complete and must be unsubscribed for when not needed.

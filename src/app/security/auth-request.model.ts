@@ -5,4 +5,4 @@ export interface AuthRequest {
     lastname: string,
     email: string;
     password: string;
-}
+} 
